@@ -59,7 +59,7 @@ export default function About() {
             <motion.div variants={fadeUp} className="relative">
               <img
                 src={CAPTAIN_IMG}
-                alt="Captain of Island Girl Charters"
+                alt="Captain of Island Girl Adventures"
                 className="rounded shadow-2xl w-full max-w-md mx-auto"
               />
               <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-teal/20 rounded -z-10" />

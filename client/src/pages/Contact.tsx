@@ -112,8 +112,8 @@ export default function Contact() {
                       <p className="font-display text-sm uppercase tracking-wider text-ocean font-bold mb-1">
                         Email
                       </p>
-                      <a href="mailto:info@islandgirlcharters.com" className="text-foreground/70 hover:text-teal transition-colors">
-                        info@islandgirlcharters.com
+                      <a href="mailto:info@islandgirladventures.com" className="text-foreground/70 hover:text-teal transition-colors">
+                        info@islandgirladventures.com
                       </a>
                     </div>
                   </div>
@@ -180,7 +180,7 @@ export default function Contact() {
                     Request Received!
                   </h2>
                   <p className="text-foreground/70 text-lg leading-relaxed max-w-md mx-auto mb-8">
-                    Thank you for your interest in Island Girl Charters. We'll review your 
+                    Thank you for your interest in Island Girl Adventures. We'll review your 
                     request and get back to you within 24 hours to confirm your trip.
                   </p>
                   <button

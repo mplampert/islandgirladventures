@@ -276,7 +276,7 @@ export default function Home() {
                 <span className="text-gold">Essex River</span>
               </h2>
               <p className="text-white/70 text-lg leading-relaxed mb-6">
-                Island Girl Charters was founded with a simple mission: to share the incredible 
+                Island Girl Adventures was founded with a simple mission: to share the incredible 
                 fishing waters of Cape Ann with anglers of all experience levels. Based out of 
                 historic Essex Harbor, we know these waters like the back of our hand.
               </p>

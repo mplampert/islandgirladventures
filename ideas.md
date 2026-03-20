@@ -1,4 +1,4 @@
-# Island Girl Charters — Design Brainstorm
+# Island Girl Adventures — Design Brainstorm
 
 ## Context
 Boat fishing charter out of Essex, MA. Cape Ann / North Shore area. Targeting recreational anglers and families looking for fishing trips. Needs essential pages (Home, About, Trips, Gallery, Contact/Booking form).

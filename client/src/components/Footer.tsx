@@ -34,7 +34,7 @@ export default function Footer() {
             <div className="flex items-center gap-2 mb-4">
               <Anchor className="w-6 h-6 text-teal" />
               <span className="font-display text-xl font-bold uppercase tracking-wider text-white">
-                Island Girl<span className="text-gold"> Charters</span>
+                Island Girl<span className="text-gold"> Adventures</span>
               </span>
             </div>
             <p className="text-white/60 leading-relaxed">
@@ -81,9 +81,9 @@ export default function Footer() {
                 <Phone className="w-5 h-5 text-teal shrink-0" />
                 <span>(978) 555-1234</span>
               </a>
-              <a href="mailto:info@islandgirlcharters.com" className="flex items-center gap-3 text-white/60 hover:text-teal transition-colors">
+              <a href="mailto:info@islandgirladventures.com" className="flex items-center gap-3 text-white/60 hover:text-teal transition-colors">
                 <Mail className="w-5 h-5 text-teal shrink-0" />
-                <span>info@islandgirlcharters.com</span>
+                <span>info@islandgirladventures.com</span>
               </a>
             </div>
           </div>
@@ -92,7 +92,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-sm">
-            &copy; {new Date().getFullYear()} Island Girl Charters. All rights reserved.
+            &copy; {new Date().getFullYear()} Island Girl Adventures. All rights reserved.
           </p>
           <p className="text-white/40 text-sm">
             Essex, MA &middot; Cape Ann &middot; North Shore
