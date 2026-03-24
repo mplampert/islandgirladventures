@@ -1,73 +1,91 @@
 /*
  * DESIGN: "Open Water" — Bold Coastal Modern
  * Navbar: Transparent on hero, solid on scroll. Bold Oswald uppercase links.
- * Teal accent on hover. Gold CTA button.
+ * Single-page anchor navigation with smooth scrolling.
  */
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "wouter";
 import { Menu, X, Anchor } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/trips", label: "Trips" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/contact", label: "Book Now" },
+  { href: "#hero", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#trips", label: "Trips" },
+  { href: "#gallery", label: "Gallery" },
+  { href: "#book", label: "Book Now" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [location] = useLocation();
+  const [activeSection, setActiveSection] = useState("#hero");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+
+      // Determine active section based on scroll position
+      const sections = navLinks.map((l) => l.href.slice(1));
+      let current = "#hero";
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120) {
+            current = `#${id}`;
+          }
+        }
+      }
+      setActiveSection(current);
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
+  const scrollTo = (hash: string) => {
     setMobileOpen(false);
-  }, [location]);
-
-  const isHome = location === "/";
-  const showSolid = scrolled || !isHome;
+    const id = hash.slice(1);
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        showSolid
+        scrolled
           ? "bg-ocean/95 backdrop-blur-md shadow-lg"
           : "bg-transparent"
       }`}
     >
       <nav className="container flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
+        <button onClick={() => scrollTo("#hero")} className="flex items-center gap-2 group">
           <Anchor className="w-7 h-7 text-teal transition-transform group-hover:rotate-12" />
           <span className="font-display text-xl md:text-2xl font-bold uppercase tracking-wider text-white">
             Island Girl<span className="text-gold"> Charters</span>
           </span>
-        </Link>
+        </button>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => {
-            const isActive = location === link.href;
-            const isBookNow = link.href === "/contact";
+            const isActive = activeSection === link.href;
+            const isBookNow = link.href === "#book";
             return isBookNow ? (
-              <Link
+              <button
                 key={link.href}
-                href={link.href}
+                onClick={() => scrollTo(link.href)}
                 className="ml-4 px-6 py-2.5 bg-gold hover:bg-gold-bright text-ocean font-display font-bold uppercase text-sm tracking-wider rounded transition-all hover:shadow-lg hover:shadow-gold/20"
               >
                 {link.label}
-              </Link>
+              </button>
             ) : (
-              <Link
+              <button
                 key={link.href}
-                href={link.href}
+                onClick={() => scrollTo(link.href)}
                 className={`px-4 py-2 font-display font-medium uppercase text-sm tracking-wider transition-colors relative ${
                   isActive
                     ? "text-teal"
@@ -81,7 +99,7 @@ export default function Navbar() {
                     className="absolute bottom-0 left-4 right-4 h-0.5 bg-teal"
                   />
                 )}
-              </Link>
+              </button>
             );
           })}
         </div>
@@ -107,26 +125,26 @@ export default function Navbar() {
           >
             <div className="container py-6 flex flex-col gap-2">
               {navLinks.map((link) => {
-                const isActive = location === link.href;
-                const isBookNow = link.href === "/contact";
+                const isActive = activeSection === link.href;
+                const isBookNow = link.href === "#book";
                 return isBookNow ? (
-                  <Link
+                  <button
                     key={link.href}
-                    href={link.href}
+                    onClick={() => scrollTo(link.href)}
                     className="mt-4 px-6 py-3 bg-gold text-ocean font-display font-bold uppercase text-center tracking-wider rounded"
                   >
                     {link.label}
-                  </Link>
+                  </button>
                 ) : (
-                  <Link
+                  <button
                     key={link.href}
-                    href={link.href}
-                    className={`px-4 py-3 font-display font-medium uppercase tracking-wider text-lg ${
+                    onClick={() => scrollTo(link.href)}
+                    className={`px-4 py-3 font-display font-medium uppercase tracking-wider text-lg text-left ${
                       isActive ? "text-teal" : "text-white/80"
                     }`}
                   >
                     {link.label}
-                  </Link>
+                  </button>
                 );
               })}
             </div>

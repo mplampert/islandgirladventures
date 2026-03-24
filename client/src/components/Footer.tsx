@@ -1,11 +1,14 @@
 /*
  * DESIGN: "Open Water" — Bold Coastal Modern
- * Footer: Deep ocean background, teal accents, gold CTA.
+ * Footer: Deep ocean background, teal accents, gold CTA. Single-page anchor links.
  */
-import { Link } from "wouter";
 import { Anchor, Phone, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <footer className="bg-navy text-white/80">
       {/* CTA Band */}
@@ -17,12 +20,12 @@ export default function Footer() {
           <p className="text-white/90 text-lg mb-8 max-w-xl mx-auto" style={{ fontFamily: "var(--font-body)" }}>
             Book your charter today and experience the best fishing the North Shore has to offer.
           </p>
-          <Link
-            href="/contact"
+          <button
+            onClick={() => scrollTo("book")}
             className="inline-block px-10 py-4 bg-gold hover:bg-gold-bright text-ocean font-display font-bold uppercase text-lg tracking-wider rounded transition-all hover:shadow-lg hover:shadow-gold/30"
           >
             Book Your Trip
-          </Link>
+          </button>
         </div>
       </div>
 
@@ -38,7 +41,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-white/60 leading-relaxed">
-              Premium fishing charters departing from Essex, Massachusetts. 
+              Premium fishing charters departing from Essex, Massachusetts.
               Explore the rich waters of Cape Ann and beyond.
             </p>
           </div>
@@ -50,19 +53,19 @@ export default function Footer() {
             </h3>
             <div className="flex flex-col gap-2">
               {[
-                { href: "/", label: "Home" },
-                { href: "/about", label: "About" },
-                { href: "/trips", label: "Trips" },
-                { href: "/gallery", label: "Gallery" },
-                { href: "/contact", label: "Book Now" },
+                { id: "hero", label: "Home" },
+                { id: "about", label: "About" },
+                { id: "trips", label: "Trips" },
+                { id: "gallery", label: "Gallery" },
+                { id: "book", label: "Book Now" },
               ].map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-white/60 hover:text-teal transition-colors"
+                <button
+                  key={link.id}
+                  onClick={() => scrollTo(link.id)}
+                  className="text-white/60 hover:text-teal transition-colors text-left"
                 >
                   {link.label}
-                </Link>
+                </button>
               ))}
             </div>
           </div>
